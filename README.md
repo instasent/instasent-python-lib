@@ -30,9 +30,25 @@ print response['response_body']
 ```
 ## Available functions
 ```
+SMS
 instasent.send_sms(sender, to, text)
 instasent.get_sms(page, per_page)
 instasent.get_sms_by_id(message_id)
+
+VERIFY
+instasent.request_verify(sender, to, text); // text must include %token% string
+instasent.check_verify(id, token)
+instasent.get_verify_by_id(id)
+instasent.get_verify()
+
+LOOKUP
+instasent.do_lookup(to)
+instasent.get_lookup_by_id(id)
+instasent.get_lookups(page, per_page)
+
+ACCOUNT
+instasent.get_account_balance()
+
 ```
 ## Documentation
 Complete documentation at :
