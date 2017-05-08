@@ -18,6 +18,15 @@ class Client(object):
 
         return self.execute_request(url, http_method, data)
 
+    def send_sms_unicode(self, sender, to, text, client_id=''):
+        url = self.secureChannel + 'sms/'
+
+        http_method = 'POST'
+
+        data = {'from': sender, 'to': to, 'text': text, 'allowUnicode': 'true'}
+
+        return self.execute_request(url, http_method, data)
+
     def get_sms_by_id(self, id):
         url = self.secureChannel + 'sms/' + id
 
