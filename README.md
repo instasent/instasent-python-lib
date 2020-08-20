@@ -1,8 +1,12 @@
-Welcome to __Instasent Python SDK__. This repository contains Instasent's Python SDK and samples for REST API.
+Welcome to __Instasent Python SDK__. This repository contains Python SDK for Instasent's REST API.
+
+# Notice!
+
+> **Verify** product is currently deprecated and will be removed in the next release. The same functionality can be easily implemented by sending an SMS. If you need help migrating please contact usage
 
 ## Installation
 
-The easiest way to install the instasent package is either via pip:
+The easiest way to install the SDK is either via pip:
 
 ```
 $ pip install instasent
@@ -14,32 +18,36 @@ or manually by downloading the source and run the setup.py script:
 $ python setup.py install
 ```
 
-## Example
-### Send an SMS
-You can check 'examples/send-sms.py' file.
-```python
+# Usage
 
+Check the [examples directory](https://github.com/instasent/instasent-python-lib/tree/master/examples) to see working examples of this SDK usage
+
+### Sending an SMS
+
+```python
 import instasent
 
 client = instasent.Client('my-token')
-response = client.send_sms('Mi company', '+34666666666', 'test message')
+response = client.send_sms('Company', '+34666666666', 'test message')
 
 print response['response_code']
 print response['response_body']
-
 ```
-## Available functions
+
+If you want to send an Unicode SMS (i.e with 😀 emoji) you only need to replace `send_sms` call to `send_sms_unicode`
+
+```python
+response = client.send_sms_unicode('Company', '+34666666666', 'Unicode test: ña éáíóú 😀')
+```
+
+## Available actions
+
 ```
 SMS
 instasent.send_sms(sender, to, text)
+instasent.send_sms_unicode(sender, to, text)
 instasent.get_sms(page, per_page)
 instasent.get_sms_by_id(message_id)
-
-VERIFY
-instasent.request_verify(sender, to, text); // text must include %token% string
-instasent.check_verify(id, token)
-instasent.get_verify_by_id(id)
-instasent.get_verify()
 
 LOOKUP
 instasent.do_lookup(to)
@@ -48,13 +56,14 @@ instasent.get_lookups(page, per_page)
 
 ACCOUNT
 instasent.get_account_balance()
-
 ```
-## Documentation
-Complete documentation at :
-[http://docs.instasent.com/](http://docs.instasent.com/).
+
+# Full documentation
+
+Full documentation of the API can be found at http://docs.instasent.com/
 
 # Getting help
 
-If you need help installing or using the library, please contact Instasent Support at support@instasent.com first.
-If you've instead found a bug in the library or would like new features added, go ahead and open issues or pull requests against this repo!
+If you need help installing or using the SDK, please contact Instasent Support at support@instasent.com
+
+If you've instead found a bug in the library or have a feature request, go ahead and open an issue or pull request!
